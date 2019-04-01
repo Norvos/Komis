@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+﻿using Komis.Infrastructure.Commands;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System;
 using System.ComponentModel.DataAnnotations;
 
+
 namespace Komis.Core.Models
 {
-    public class Opinion
+    public class Opinion : ICommand
     {
         [BindNever]
         public Guid ID { get; set; }

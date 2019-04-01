@@ -22,11 +22,12 @@ namespace Komis.Controllers
         public async Task<IActionResult> Index()
         {
             var samochody = await _carService.BrowseAsync();
-            // OrderBy(s => s.Marka);
+            samochody.OrderBy(s => s.Brand);
+
             var homeViewModel = new HomeViewModel()
             {
-                Tytul = "Przeglad samochodow",
-                ListaSamochodow = samochody.ToList()
+                Title = "Przeglad samochodow",
+                CarList = samochody.ToList()
             }; 
          
             return View(homeViewModel);
