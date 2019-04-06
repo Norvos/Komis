@@ -1,46 +1,5 @@
 ﻿@model Opinion;
-<script>alert("Dziękujemy za opinię");</script>
-
-<form asp-action="Index" method="post" class="form-horizontal" role="form">
-    <br />
-    <br />
-    <br />
-    <br />
-
-    <div class="form-group">
-        <label asp-for="Username" class="col-md-2 control-label">Nazwa użytkownika</label>
-        <div class="col-md-5">
-            <input asp-for="Username" class="form-control" />
-            <span asp-validation-for="Username" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Email" class="col-md-2 control-label">Email</label>
-        <div class="col-md-5">
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Message" class="col-md-2 control-label">Wiadomość</label>
-        <div class="col-md-5">
-            <textarea asp-for="Message" class="form-control"></textarea>
-            <span asp-validation-for="Message" class="text-danger"></span>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="WaitingForAnAnswer" class="col-md-2 control-label">Czekam na odpowiedź</label>
-        <div class="col-md-5">
-            <input type="checkbox" asp-for="WaitingForAnAnswer" class="form-control" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-5">
-            <input type="submit" class="btn btn-primary" value="Wyślij opinię" />
-        </div>
-    </div>
-</form>
+<script>
+    alert("Dziękujemy za opinię");
+   window.location.href = "/opinion/index";
+</script>

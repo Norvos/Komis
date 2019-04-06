@@ -2,24 +2,28 @@
 using Komis.Core.Models;
 using Komis.Core.Repositories;
 using Komis.Infrastructure.Commands;
+using Komis.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace Komis.Controllers
 {
+    [Authorize]
     public class OpinionController : ApiControllerBase
     {
-        private readonly IOpinionRepository _opinionRepository;
+        private readonly IUserService _userService;
 
-        public OpinionController(IOpinionRepository opinionRepository, ICommandDispatcher commandDispatcher)
-           :base(commandDispatcher)
+        public OpinionController(IUserService userService, ICommandDispatcher commandDispatcher)
+           : base(commandDispatcher)
         {
-            _opinionRepository = opinionRepository;
+            _userService = userService;
         }
 
         //[HttpGet]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            await GetEmailAddress();
             return View();
         }
 
@@ -30,7 +34,6 @@ namespace Komis.Controllers
             {
                 return View(command);
             }
-
             await DispatchAsync(command);
 
             return RedirectToAction("SendSuccessful");
@@ -41,5 +44,15 @@ namespace Komis.Controllers
             return View();
         }
 
+        private async Task GetEmailAddress()
+        {
+            var username = User.Identity.Name;
+
+            if (!string.IsNullOrEmpty(username))
+            {
+                var user = await _userService.GetAsync(username);
+                ViewData.Add("Email",user.Email);
+            }
+        }
     }
 }

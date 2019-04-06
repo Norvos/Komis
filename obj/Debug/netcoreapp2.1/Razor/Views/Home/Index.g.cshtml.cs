@@ -13,18 +13,23 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 2 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
 using Komis.Core.Models;
 
 #line default
 #line hidden
-#line 3 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
+#line 4 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
 using Komis.Core.ViewModels;
 
 #line default
 #line hidden
+#line 5 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
+using Komis.Infrastructure.Commands.User;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7e00d02d151ae63a85fcf650c3453a8a44b28315", @"/Views/Home/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3238407f003510a52dd55a14ac883d5d3a50288b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2a37154dd8d78dc055515e6d767960e5998e98bf", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<HomeViewModel>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-controller", "Home", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -94,7 +99,7 @@ WriteAttributeValue("", 191, car.ThumbnailURL, 191, 17, false);
             WriteLiteral("</h3>\r\n                <h3>\r\n                   ");
             EndContext();
             BeginContext(365, 83, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "d6b82c9923d4498da00ba8fc8d6a5ba3", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "bcb8f841d47d46d3bbdf4c3a3f42e8ec", async() => {
                 BeginContext(435, 9, false);
 #line 13 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\Home\Index.cshtml"
                                                                                    Write(car.Brand);

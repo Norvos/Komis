@@ -27,6 +27,9 @@ namespace Komis.Infrastructure.Services
             await _opinionRepository.AddAsync(opinion);
         }
 
+        public async Task AddAsync(Opinion opinion)
+        => await _opinionRepository.AddAsync(opinion);
+
         public async Task DeleteAsync(Guid opinionId)
         {
             await _opinionRepository.DeleteAsync(opinionId);

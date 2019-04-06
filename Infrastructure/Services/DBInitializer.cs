@@ -16,6 +16,7 @@ namespace Komis.Infrastructure.Services
                      160000M, "../images/fordFocusFull.jpg", "../images/fordFocusMiniatura.jpg", false, false));
             }
             context.SaveChanges();
+            
         }
     }
 }

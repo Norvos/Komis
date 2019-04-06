@@ -1,17 +1,13 @@
 ﻿@model Opinion;
 
-
-
-<form asp-action="Index" method="post" class="form-horizontal" role="form">
-    <br />
-    <br />
-    <br />
-    <br />
-
+<h2> Tutaj możesz wysłać opinię dotyczącą tego serwisu</h2>
+<hr />
+<form asp-action="Index" method="post" class="form-horizontal" role="form" id="opinion_form">
+   
     <div class="form-group">
         <label asp-for="Username" class="col-md-2 control-label">Nazwa użytkownika</label>
         <div class="col-md-5">
-            <input asp-for="Username" class="form-control" />
+            <input asp-for="Username" class="form-control" value="@User.Identity.Name" />
             <span asp-validation-for="Username" class="text-danger"></span>
         </div>
     </div>
@@ -19,7 +15,7 @@
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label">Email</label>
         <div class="col-md-5">
-            <input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control" value=@ViewData["Email"] />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
     </div>
@@ -33,15 +29,18 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="WaitingForAnAnswer" class="col-md-2 control-label">Czekam na odpowiedź</label>
-        <div class="col-md-5">
+        <label asp-for="WaitingForAnAnswer" class="col-md-2 control-label">Oczekuję odpowiedźi</label>
+        <div class="col-md-1">
             <input type="checkbox" asp-for="WaitingForAnAnswer" class="form-control" />
         </div>
     </div>
 
     <div class="form-group">
         <div class="col-md-offset-2 col-md-5">
-            <input type="submit" class="btn btn-primary" value="Wyślij opinię" />
+            <input type="submit" id="submit_btn"class="btn btn-primary" value="Wyślij opinię" />
         </div>
     </div>
 </form>
+
+
+

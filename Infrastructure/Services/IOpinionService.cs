@@ -11,6 +11,7 @@ namespace Komis.Infrastructure.Services
         Task<Opinion> GetAsync(Guid opinionId);
         //Task<IEnumerable<Opinion>> BrowseAsync();
         Task AddAsync(Guid id, string email, string username, string message, bool waitingForAnAnswer);
+        Task AddAsync(Opinion opinion);
         Task DeleteAsync(Guid id);
     }
 }

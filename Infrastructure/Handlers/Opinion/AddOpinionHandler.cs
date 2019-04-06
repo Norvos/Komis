@@ -16,7 +16,7 @@ namespace Komis.Infrastructure.Handlers.AddOpinion
 
         public async Task HandleAsync(Opinion command)
         {
-            await _opinionService.AddAsync(command.ID, command.Email, command.Username, command.Message, command.WaitingForAnAnswer);
+            await _opinionService.AddAsync(command);
         }
     }
 }

@@ -13,18 +13,23 @@ namespace AspNetCore
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Mvc.Rendering;
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
-#line 2 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
+#line 3 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
 using Komis.Core.Models;
 
 #line default
 #line hidden
-#line 3 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
+#line 4 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
 using Komis.Core.ViewModels;
 
 #line default
 #line hidden
+#line 5 "C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\Views\_ViewImports.cshtml"
+using Komis.Infrastructure.Commands.User;
+
+#line default
+#line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"8c6b97a1d354bbe1fc69f6fe5ac697f52a4e38e3", @"/Views/Home/Details.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"3238407f003510a52dd55a14ac883d5d3a50288b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"2a37154dd8d78dc055515e6d767960e5998e98bf", @"/Views/_ViewImports.cshtml")]
     public class Views_Home_Details : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<Car>
     {
         #pragma warning disable 1998
