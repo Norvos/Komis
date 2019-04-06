@@ -26,7 +26,7 @@ namespace Komis.Controllers
 
             var homeViewModel = new HomeViewModel()
             {
-                Title = "Przeglad samochodow",
+                Title = "Przegląd samochodów",
                 CarList = samochody.ToList()
             }; 
          

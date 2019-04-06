@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace Komis.Infrastructure.Migrations
+namespace Komis.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20190404170431_IdentityAdded")]
-    partial class IdentityAdded
+    [Migration("20190406144536_sadassadsad")]
+    partial class sadassadsad
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

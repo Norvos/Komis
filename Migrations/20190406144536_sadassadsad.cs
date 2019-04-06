@@ -1,14 +1,13 @@
 ﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Komis.Infrastructure.Migrations
+namespace Komis.Migrations
 {
-    public partial class CarEdited : Migration
+    public partial class sadassadsad : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Samochody");
 
             migrationBuilder.CreateTable(
                 name: "Cars",
@@ -33,36 +32,12 @@ namespace Komis.Infrastructure.Migrations
                 {
                     table.PrimaryKey("PK_Cars", x => x.ID);
                 });
+
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Cars");
-
-            migrationBuilder.CreateTable(
-                name: "Samochody",
-                columns: table => new
-                {
-                    ID = table.Column<Guid>(nullable: false),
-                    Cena = table.Column<decimal>(nullable: false),
-                    JestSamochodemTygodnia = table.Column<bool>(nullable: false),
-                    JestWCentrali = table.Column<bool>(nullable: false),
-                    Marka = table.Column<string>(nullable: true),
-                    MiniaturkaURL = table.Column<string>(nullable: true),
-                    Moc = table.Column<string>(nullable: true),
-                    Model = table.Column<string>(nullable: true),
-                    Opis = table.Column<string>(nullable: true),
-                    Pojemność = table.Column<string>(nullable: true),
-                    Przebieg = table.Column<string>(nullable: true),
-                    RodzajPaliwa = table.Column<string>(nullable: true),
-                    RokProdukcji = table.Column<int>(nullable: false),
-                    ZdjecieURL = table.Column<string>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Samochody", x => x.ID);
-                });
+          
         }
     }
 }

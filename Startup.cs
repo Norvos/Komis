@@ -1,9 +1,7 @@
 ﻿using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using Komis.Core.Repositories;
 using Komis.Infrastructure.EF;
 using Komis.Infrastructure.IoC;
-using Komis.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;

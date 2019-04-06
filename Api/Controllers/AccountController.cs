@@ -9,14 +9,11 @@ namespace Komis.Api.Controllers
 {
     public class AccountController : ApiControllerBase
     {
-        private readonly SignInManager<IdentityUser> _signInManager;
 
-        public AccountController(ICommandDispatcher commandDispatcher,
-            SignInManager<IdentityUser> signInManager)
-        : base(commandDispatcher)
-        {
-            _signInManager = signInManager;
-        }
+
+        public AccountController(ICommandDispatcher commandDispatcher)
+        : base(commandDispatcher) { }
+      
 
         // GET: /<controller>/
         public IActionResult Login()

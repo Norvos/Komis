@@ -1,17 +1,18 @@
 ﻿@model HomeViewModel
 
-<h2> @Model.Title</h2>
+<h2 style="margin-left:20px"> @Model.Title  </h2>
 
 @foreach (var car in Model.CarList)
 {
     <div class="col-sm-4 col-lg-4 col-md-4">
-        <div class="thumbnail">
-            <img src="@car.ThumbnailURL" alt="">
-            <div class="caption">
-                <h3 class="pull-right">@car.Price.ToString("c")</h3>
-                <h3>
-                   <a asp-controller="Home" asp-action="Details" asp-route-id="@car.ID">@car.Brand</a> - @car.Model - @car.YearOfProduction
+        <div class="thumbnail img-responsive">
+            <a asp-controller="Home" asp-action="Details" asp-route-id="@car.ID"><img src="@car.ThumbnailURL" style="width:350px;height:250px"></a>
+            <div class="caption center-block">
+                <h3 class="text-center">
+                  @car.Brand - @car.Model - @car.YearOfProduction
                 </h3>
+
+                <h3 class="pull-right">@car.Price.ToString("c")</h3>
                 <h4>
                     Przebieg : @car.Milage
                 </h4>
