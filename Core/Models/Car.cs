@@ -6,7 +6,7 @@ namespace Komis.Core.Models
 {
     public class Car
     {
-        [BindNever]
+
         public Guid ID { get; set; }
 
         [Required(ErrorMessage = "Wprowadź markę")]
@@ -36,14 +36,9 @@ namespace Komis.Core.Models
         [Required(ErrorMessage = "Podaj cenę")]
         public decimal Price { get; set; }
 
-        [BindNever]
         public string PictureURL { get; set; }
 
-        [BindNever]
-        public string ThumbnailURL { get; set; }
-
-
-        public Car(Guid id, string brand, string model, int yearofproduction, string milage, string capacity, string fueltype, string power, string description, decimal price, string pictureurl, string thumbnailurl, bool iscaroftheweek, bool isinacentral)
+        public Car(Guid id, string brand, string model, int yearofproduction, string milage, string capacity, string fueltype, string power, string description, decimal price, string pictureurl)
         {
             ID = id;
             Brand = brand;
@@ -56,7 +51,6 @@ namespace Komis.Core.Models
             Description = description;
             Price = price;
             PictureURL = pictureurl;
-            ThumbnailURL = thumbnailurl;
         }
 
         public Car() { }

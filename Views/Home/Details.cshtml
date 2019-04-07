@@ -9,9 +9,18 @@
         <h3>Rok produkcji: @Model.YearOfProduction </h3>
         <h3> Przebieg: @Model.Milage </h3>
         <h3>Pojemność: @Model.Capacity </h3>
-        <h3>Moc: @Model.Power </h3>
+        <h3>
+            Moc: @Model.Power
+
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-controller="Car" asp-action="Edit" asp-route-id="@Model.ID"> <input type="button" value="Edytuj ogłoszenie" class="btn btn-primary pull-right" /></a>
+            }
+
+        </h3>
+
         <p class="text-justify"> @Model.Description </p>
+        </div>
+
+
     </div>
-
-
-</div>

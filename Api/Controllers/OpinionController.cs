@@ -15,8 +15,8 @@ namespace Komis.Controllers
     {
         private readonly IUserService _userService;
        
-        public OpinionController(IUserService userService, ICommandDispatcher commandDispatcher,IEmailSender emailSender)
-           : base(commandDispatcher, emailSender)
+        public OpinionController(IUserService userService, ICommandDispatcher commandDispatcher,IEmailSender emailSender, ICarService carService)
+           : base(commandDispatcher, emailSender, carService)
         {
             _userService = userService;
         }

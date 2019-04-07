@@ -17,21 +17,24 @@ namespace Komis.Infrastructure.Services
             _carReposotory = carReposotory;
         }
 
-        public async Task AddAsync(Guid id, string Brand, string model, int yearofproduction, string milage, string capacity, string fueltype, string power, string description, decimal price, string pictureurl, string thumbnailurl, bool iscaroftheweek, bool isinacentral)
+        public async Task AddAsync(Guid id, string Brand, string model, int yearofproduction, string milage, string capacity, string fueltype, string power, string description, decimal price, string pictureurl)
         {
             var car = await _carReposotory.GetAsync(id);
             if (car != null)
             {
                 throw new Exception($"Car with id: '{id}' already exists.");
             }
-            car = new Car(id, Brand, model, yearofproduction, milage, capacity, fueltype, power, description, price, pictureurl, thumbnailurl, iscaroftheweek, isinacentral);
+            car = new Car(id, Brand, model, yearofproduction, milage, capacity, fueltype, power, description, price, pictureurl);
            
             await _carReposotory.AddAsync(car);
         }
         public async Task AddAsync(Car car)
         => await _carReposotory.AddAsync(car);
-        
 
+        public async Task Update(Car car)
+        => await _carReposotory.UpdateAsync(car);
+        
+     
         public async Task<IEnumerable<Car>> BrowseAsync()
         => await _carReposotory.GetAllAsync();
            

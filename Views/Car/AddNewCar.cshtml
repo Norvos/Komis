@@ -26,7 +26,7 @@
     <div class="form-group">
         <label asp-for="Car.Capacity" class="col-md-2 control-label">Pojemność [cm<SUP>3</SUP>]</label>
         <div class="col-md-5">
-            <select asp-for="Car.Capacity" class="form-control">
+            <select asp-for="Car.Capacity" class="form-control" name="Capacity">
                 @for (int i = 1000; i <= 2000; i += 100)
                 {
                     <option value="@i cm3">@i</option>

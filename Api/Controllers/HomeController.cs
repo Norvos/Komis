@@ -1,4 +1,6 @@
-﻿using Komis.Core.ViewModels;
+﻿using Komis.Api.Controllers;
+using Komis.Core.ViewModels;
+using Komis.Infrastructure.Commands;
 using Komis.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -11,14 +13,12 @@ using System.Threading.Tasks;
 namespace Komis.Controllers
 {
     [AllowAnonymous]
-    public class HomeController : Controller
+    public class HomeController : ApiControllerBase
     {
-        private readonly ICarService _carService;
-
-        public HomeController(ICarService carService)
-        {
-            _carService = carService;
-        }
+       
+        public HomeController(ICommandDispatcher commandDispatcher, IEmailSender emailSender, ICarService carService)
+        :base(commandDispatcher, emailSender, carService) {}
+        
 
         // GET: /<controller>/
         public async Task<IActionResult> Index()

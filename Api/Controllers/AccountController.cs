@@ -13,8 +13,8 @@ namespace Komis.Api.Controllers
     public class AccountController : ApiControllerBase
     {
 
-        public AccountController(ICommandDispatcher commandDispatcher, IEmailSender emailSender)
-        : base(commandDispatcher, emailSender) { }
+        public AccountController(ICommandDispatcher commandDispatcher, IEmailSender emailSender, ICarService carService)
+        : base(commandDispatcher, emailSender, carService) { }
       
 
         // GET: /<controller>/

@@ -1,9 +1,11 @@
 ﻿using Komis.Core.Models;
 using Komis.Core.ViewModels;
+using Komis.Infrastructure.Commands;
 using Komis.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -12,15 +14,15 @@ using System.Threading.Tasks;
 namespace Komis.Api.Controllers
 {
     [Authorize(Roles="Admin")]
-    public class CarController : Controller
+    public class CarController : ApiControllerBase
     {
-        private readonly ICarService _carService;
+       
         private readonly IHostingEnvironment _hostingEnvironment;
         // GET: /<controller>/
 
-        public CarController(ICarService carService, IHostingEnvironment hostingEnvironment)
-        {
-            _carService = carService;
+        public CarController(ICommandDispatcher commandDispatcher, IEmailSender emailSender, ICarService carService, IHostingEnvironment hostingEnvironment)
+        : base(commandDispatcher, emailSender, carService)
+        { 
             _hostingEnvironment = hostingEnvironment;
         }
 
@@ -49,7 +51,6 @@ namespace Komis.Api.Controllers
                 filePath = Path.GetRelativePath(lib, filePath);
 
                 vm.Car.PictureURL = filePath;
-                vm.Car.ThumbnailURL = filePath;
             }
 
             
@@ -60,5 +61,26 @@ namespace Komis.Api.Controllers
             await _carService.AddAsync(vm.Car);
             return View();
         }
+
+        public async Task<IActionResult> Edit(Guid id)
+        {
+            var car = await _carService.GetAsync(id);
+
+            if (car == null)
+                return NotFound();
+
+            return View(car);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Car car_edited)
+        {
+            if (!ModelState.IsValid)
+                return View(car_edited);
+
+            await _carService.Update(car_edited);
+            return View(car_edited);
+        }
+
     }
 }
