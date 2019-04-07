@@ -10,9 +10,12 @@ namespace Komis.Infrastructure.Handlers.User
     {
         private readonly UserManager<IdentityUser> _userManager;
 
-        public CreateUserHandler(UserManager<IdentityUser> userManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public CreateUserHandler(UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
         }
 
         public async Task HandleAsync(CreateUser command)
@@ -29,6 +32,17 @@ namespace Komis.Infrastructure.Handlers.User
             {
                 throw new Exception("Nazwa użytkownika lub hasło są niewłaściwe");
             }
+
+            var roleCheck = await _roleManager.RoleExistsAsync("User");
+
+            if (!roleCheck)
+            {
+                await _roleManager.CreateAsync(new IdentityRole("User"));
+            }
+
+            await _userManager.AddToRoleAsync(user, "User");
+
+
         }
 
     }

@@ -23,6 +23,14 @@
                 </ul>
                 @if (_signInManager.IsSignedIn(User))
                 {
+
+                <ul class="nav navbar-nav">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <li> <a asp-controller="" asp-action="">Dodaj ogłoszenie</a></li>
+                    }
+                </ul>
+
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
                           method="post" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">

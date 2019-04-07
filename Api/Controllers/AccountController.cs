@@ -2,14 +2,14 @@
 using System.Threading.Tasks;
 using Komis.Infrastructure.Commands;
 using Komis.Infrastructure.Commands.User;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Komis.Api.Controllers
 {
+    [AllowAnonymous]
     public class AccountController : ApiControllerBase
     {
-
 
         public AccountController(ICommandDispatcher commandDispatcher)
         : base(commandDispatcher) { }

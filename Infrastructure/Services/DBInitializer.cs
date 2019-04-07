@@ -24,7 +24,8 @@ namespace Komis.Infrastructure.Services
                     new Car(Guid.NewGuid(), "Seat", "Ibiza III", 2004, "140 000 km", "1 200 cm3", "benzyna", "120 KM", "Auto sprawne, jeździ do przodu, tyłu, hamuje i skręca. POLECAM",
                     12000M, "../images/ibiza.jpg", "../images/ibiza.jpg", false, false)); ;
             }
-            context.SaveChanges();
+           context.SaveChanges();
+           
             
         }
     }

@@ -14,6 +14,7 @@ namespace Komis.Infrastructure.Commands.User
         [Required]
         [Display(Name = "Hasło")]
         [DataType(DataType.Password)]
+        [MinLength(5,ErrorMessage ="Hasło musi zawierać minimum 5 znaków")]
         public string Password { get; set; }
 
         [Required]

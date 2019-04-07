@@ -1,5 +1,6 @@
 ﻿using Komis.Core.ViewModels;
 using Komis.Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace Komis.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly ICarService _carService;

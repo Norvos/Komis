@@ -36,12 +36,36 @@ namespace Komis
 
             services.Configure<IdentityOptions>(options =>
             {
+                // Password settings 
                 options.Password.RequireDigit = false;
                 options.Password.RequireLowercase = false;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
                 options.Password.RequiredLength = 5;
                 options.Password.RequiredUniqueChars = 0;
+
+                // Lockout settings 
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(30);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+                options.Lockout.AllowedForNewUsers = true;
+
+                // User settings
+                options.User.RequireUniqueEmail = true;
+
+            });
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+                options.LoginPath = "/Account/Login"; 
+                                                    
+                options.LogoutPath = "/Account/Logout"; 
+                                                      
+                options.AccessDeniedPath = "/Account/Login"; 
+                                                                                         
+                options.SlidingExpiration = true;
             });
 
             services.AddMvc();
@@ -63,9 +87,7 @@ namespace Komis
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseAuthentication();
-
-
-
+          
             app.UseMvc(routes =>
             {
                 routes.MapRoute

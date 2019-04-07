@@ -1,6 +1,5 @@
 ﻿using Komis.Api.Controllers;
 using Komis.Core.Models;
-using Komis.Core.Repositories;
 using Komis.Infrastructure.Commands;
 using Komis.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Komis.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "User, Admin")]
     public class OpinionController : ApiControllerBase
     {
         private readonly IUserService _userService;
@@ -54,6 +53,7 @@ namespace Komis.Controllers
             if (!string.IsNullOrEmpty(username))
             {
                 var user = await _userService.GetAsync(username);
+  
                 return user.Email;
             }
             return string.Empty;
