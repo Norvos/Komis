@@ -1,13 +1,19 @@
 ﻿body {
     padding-top: 30px;
     padding-bottom: 20px;
-   // background-image: url('../images/tlo.jpg');
     background-color:whitesmoke ;
-    background-repeat: repeat;
+   
 }
 
 
 .body-content{
     padding-left: 10px;
     padding-right: 10px;
+}
+
+h4 {
+   line-height:70%;
+}
+h3 {
+    line-height:120%;
 }

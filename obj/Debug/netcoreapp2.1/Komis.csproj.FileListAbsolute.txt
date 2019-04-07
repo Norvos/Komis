@@ -28,4 +28,5 @@ C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\obj\Debug\netcoreapp2.1\Komis.V
 C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\obj\Debug\netcoreapp2.1\Komis.dll
 C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\obj\Debug\netcoreapp2.1\Komis.pdb
 C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\obj\Debug\netcoreapp2.1\Komis.csproj.CopyComplete
+C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\obj\Debug\netcoreapp2.1\Razor\Views\Car\AddNewCar.g.cshtml.cs
 C:\Users\adria\Desktop\Kursy\.NET Core 2.1\Komis\obj\Debug\netcoreapp2.1\Komis.csprojAssemblyReference.cache

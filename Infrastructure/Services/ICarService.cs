@@ -12,6 +12,7 @@ namespace Komis.Infrastructure.Services
         Task<IEnumerable<Car>> BrowseAsync();
         Task AddAsync(Guid id, string Brand, string model,int yearofproduction, string milage, string capacity,string fueltype,
         string power, string description, decimal price, string pictureurl, string thumbnailurl, bool iscaroftheweek,bool isinacentral);
+        Task AddAsync(Car car);
         Task DeleteAsync(Guid id);
     }
 }

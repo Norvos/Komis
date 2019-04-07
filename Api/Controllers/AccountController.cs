@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Komis.Core.Models;
 using Komis.Infrastructure.Commands;
 using Komis.Infrastructure.Commands.User;
+using Komis.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,8 +13,8 @@ namespace Komis.Api.Controllers
     public class AccountController : ApiControllerBase
     {
 
-        public AccountController(ICommandDispatcher commandDispatcher)
-        : base(commandDispatcher) { }
+        public AccountController(ICommandDispatcher commandDispatcher, IEmailSender emailSender)
+        : base(commandDispatcher, emailSender) { }
       
 
         // GET: /<controller>/
@@ -61,7 +63,8 @@ namespace Komis.Api.Controllers
                 ModelState.AddModelError("registerError", e.Message);
                 return View(createUser);
             }
-         
+
+            _emailSender.SendEmail(createUser.Email, $"{createUser.Username} dziękujemy za rejestrację", Messages.Register);
             return RedirectToAction("Index", "Home"); 
         }
 

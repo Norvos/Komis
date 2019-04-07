@@ -14,9 +14,9 @@ namespace Komis.Controllers
     public class OpinionController : ApiControllerBase
     {
         private readonly IUserService _userService;
- 
-        public OpinionController(IUserService userService, ICommandDispatcher commandDispatcher)
-           : base(commandDispatcher)
+       
+        public OpinionController(IUserService userService, ICommandDispatcher commandDispatcher,IEmailSender emailSender)
+           : base(commandDispatcher, emailSender)
         {
             _userService = userService;
         }
@@ -40,9 +40,9 @@ namespace Komis.Controllers
             return RedirectToAction("SendSuccessful");
         }
 
-        public IActionResult SendSuccessful()
+        public async Task<IActionResult> SendSuccessful()
         {
-            SendEmail();
+            _emailSender.SendEmail(await GetEmailAddress(), $"{User.Identity.Name} dziękujemy za opinię",Messages.Opinion);
             return View();
         }
 
@@ -57,27 +57,6 @@ namespace Komis.Controllers
                 return user.Email;
             }
             return string.Empty;
-        }
-
-         private async Task SendEmail()
-        {
-            using (MailMessage mail = new MailMessage())
-            {
-                mail.From = new MailAddress("testCsharp2019@gmail.com");
-                mail.To.Add(await GetEmailAddress());
-                mail.Subject = "Dziękujemy";
-                mail.Body = "Właśnie napisałeś opinię w serwisie Komis. " +
-                            "Twoja opinia jest dla nas bardzo cenna. Jeśli zaznaczyłeś opcję 'Czekam na odpowiedź' odezwiemy się do Ciebie w ciągu " +
-                            "7-dmiu dni roboczych. "+
-                            "Dziękujemy, jesteśmy wdzięczni.";
-                mail.IsBodyHtml = true; 
-                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587))
-                {
-                    smtp.Credentials = new NetworkCredential("testCsharp2019@gmail.com", "Komis123");
-                    smtp.EnableSsl = true;
-                    await smtp.SendMailAsync(mail);
-                }
-            }
         }
     }
 }

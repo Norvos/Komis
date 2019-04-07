@@ -8,20 +8,25 @@
         <div class="thumbnail img-responsive">
             <a asp-controller="Home" asp-action="Details" asp-route-id="@car.ID"><img src="@car.ThumbnailURL" style="width:350px;height:250px"></a>
             <div class="caption center-block">
+
                 <h3 class="text-center">
                   @car.Brand - @car.Model - @car.YearOfProduction
                 </h3>
 
-                <h3 class="pull-right">@car.Price.ToString("c")</h3>
-                <h4>
+                <h3 class="pull-right"> <b> @car.Price.ToString("c") </b> </h3>
+
+                <h4 >
                     Przebieg : @car.Milage
                 </h4>
-                <h4>
+
+                <h4 >
                     Pojemność : @car.Capacity
                 </h4>
-                <h4>
+
+                <h4 >
                     Moc : @car.Power
                 </h4>
+
                 <p>@car.Description</p>
             </div>
         </div>

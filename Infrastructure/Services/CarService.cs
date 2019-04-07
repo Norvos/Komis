@@ -28,6 +28,9 @@ namespace Komis.Infrastructure.Services
            
             await _carReposotory.AddAsync(car);
         }
+        public async Task AddAsync(Car car)
+        => await _carReposotory.AddAsync(car);
+        
 
         public async Task<IEnumerable<Car>> BrowseAsync()
         => await _carReposotory.GetAllAsync();
