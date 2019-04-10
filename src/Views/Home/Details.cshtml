@@ -1,0 +1,42 @@
+﻿@model Car
+
+<h2> @Model.Brand - @Model.Model </h2>
+
+<div class="thumbnail">
+    <img src="../@Model.PictureURL" style="width:750px;height:500px" />
+    <div class="caption">
+        <h2 class="pull-right">Cena: @Model.Price.ToString("c")</h2>
+        <h3>Rok produkcji: @Model.YearOfProduction </h3>
+        <h3> Przebieg: @Model.Milage </h3>
+        <h3>Pojemność: @Model.Capacity </h3>
+
+        @if (User.IsInRole("Admin"))
+        {
+    <div class="pull-right btn-group-vertical">
+        <a asp-controller="Car" asp-action="Edit" asp-route-id="@Model.ID"> <input type="button" value="Edytuj ogłoszenie" class="btn btn-primary " /></a>
+
+        <br />
+        <br />
+        <a><input type="button" id="delete-button" value="Usuń ogłoszenie" class="btn btn-primary col-md-12" /></a>
+    </div>
+        }
+        <h3>Typ paliwa: @Model.FuelType </h3>
+        <h3>
+            Moc: @Model.Power
+        </h3>
+
+        <p class="text-justify caption"> @Model.Description </p>
+    </div>
+
+</div>
+
+<script>
+
+    $("#delete-button").click(function () {
+        if (confirm("Are you sure you want to delete this?"))
+        {
+           window.location.href = "@Url.Action("Delete", "Car", new { id = Model.ID })";
+        }
+    });
+
+</script>

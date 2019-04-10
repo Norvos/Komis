@@ -1,0 +1,130 @@
+﻿@model AddCarVM;
+
+<h2> Tutaj możesz dodać kolejny samochód</h2>
+<hr />
+
+
+<form asp-action="AddNewCar" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label asp-for="Car.Brand" class="col-md-2 control-label">Marka</label>
+        <div class="col-md-5">
+            <input asp-for="Car.Brand" class="form-control" />
+            <span asp-validation-for="Car.Brand" class="text-danger"></span>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Car.Model" class="col-md-2 control-label">Model</label>
+        <div class="col-md-5">
+            <input asp-for="Car.Model" class="form-control" />
+            <span asp-validation-for="Car.Model" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Car.Capacity" class="col-md-2 control-label">Pojemność [cm<SUP>3</SUP>]</label>
+        <div class="col-md-5">
+            <select asp-for="Car.Capacity" class="form-control">
+                @for (int i = 1000; i <= 2000; i += 100)
+                {
+                <option value="@i cm3">@i </option>
+                }
+            </select>
+            <span asp-validation-for="Car.Capacity" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Car.FuelType" class="col-md-2 control-label">Typ paliwa</label>
+        <div class="col-md-5">
+            <select asp-for="Car.FuelType" class="form-control" size="4">
+                <option value="LPG">LPG</option>
+                <option value="benzyna">Benzyna</option>
+                <option value="diesel">Diesel</option>
+                <option value="benzyna+LPG">Benzyna + LPG</option>
+            </select>
+            <span asp-validation-for="Car.FuelType" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Car.Milage" class="col-md-2 control-label">Przebieg [km]</label>
+        <div class="col-md-5">
+            <input asp-for="Car.Milage" class="form-control" />
+            <span asp-validation-for="Car.Milage" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Car.Power" class="col-md-2 control-label">Moc [KM]</label>
+        <div class="col-md-5">
+            <input asp-for="Car.Power" class="form-control" />
+            <span asp-validation-for="Car.Power" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Car.Price" class="col-md-2 control-label">Cena [zł]</label>
+        <div class="col-md-5">
+            <input asp-for="Car.Price" class="form-control" />
+            <span asp-validation-for="Car.Price" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Car.YearOfProduction" class="col-md-2 control-label">Rok produkcji</label>
+        <div class="col-md-5">
+            <select asp-for="Car.YearOfProduction" class="form-control">
+                @for (int i = 1980; i <= 2019; i++)
+                {
+                    <option value=@i > @i </option>
+                }
+            </select>
+            <span asp-validation-for="Car.YearOfProduction" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Image" class="col-md-2 control-label">Zdjęcie</label>
+        <div class="col-md-5">
+            <input type="file" asp-for="Image" onchange="upload_img(this)" />
+            <span asp-validation-for="Image" class="text-danger"></span>
+            <img id="img_id" src="#" style="height:200px; width:300px; display:none" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Car.Description" class="col-md-2 control-label">Opis</label>
+        <div class="col-md-5">
+            <textarea asp-for="Car.Description" class="form-control"></textarea>
+            <span asp-validation-for="Car.Description" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" id="submit_btn" class="btn btn-primary" value="Dodaj samochód" />
+        </div>
+    </div>
+</form>
+
+
+<script type="text/javascript">
+
+    function upload_img(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#img_id').attr('src', e.target.result);
+                $("#img_id").css('display', 'inline');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+          
+        }
+    }
+
+</script>
