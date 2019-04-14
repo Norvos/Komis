@@ -9,5 +9,6 @@ namespace Komis.Core.Repositories
         Task<Opinion> GetAsync(Guid id);
         Task AddAsync(Opinion opinion);
         Task DeleteAsync(Guid id);
+        Task Update(Opinion opinion);
     }
 }

@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Komis.Infrastructure.Repositories
@@ -24,6 +23,7 @@ namespace Komis.Infrastructure.Repositories
 
         public async Task AddAsync(Car car)
         {
+            car.CreatedAt = DateTime.UtcNow;
             await _context.Cars.AddAsync(car);
             await _context.SaveChangesAsync();
 
@@ -47,6 +47,7 @@ namespace Komis.Infrastructure.Repositories
 
         public async Task UpdateAsync(Car car)
         {
+            car.UpdatedAt = DateTime.UtcNow;
             _context.Cars.Update(car);
             await _context.SaveChangesAsync();
 

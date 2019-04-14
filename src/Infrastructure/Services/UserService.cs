@@ -16,7 +16,6 @@ namespace Komis.Infrastructure.Services
             _userRepository = userRepository;
         }
 
-
         public async Task<IdentityUser> GetAsync(Guid Id)
         => await _userRepository.GetAsync(Id);
 

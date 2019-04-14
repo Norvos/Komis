@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Komis.Infrastructure.Handlers.AddOpinion
 {
-    public class AddOpinionHandler : ICommandHandler<Opinion>
+    public class AddOpinionHandler : ICommandHandler<Commands.Opinion.AddOpinion>
     {
         private readonly IOpinionService _opinionService;
 
@@ -14,9 +14,9 @@ namespace Komis.Infrastructure.Handlers.AddOpinion
             _opinionService = opinionService;
         }
 
-        public async Task HandleAsync(Opinion command)
+        public async Task HandleAsync(Commands.Opinion.AddOpinion command)
         {
-            await _opinionService.AddAsync(command);
+            await _opinionService.AddAsync((Opinion)command);
         }
     }
 }

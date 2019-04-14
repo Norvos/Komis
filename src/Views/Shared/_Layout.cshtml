@@ -10,7 +10,7 @@
     <link href="~/content/Site.css" rel="stylesheet" />
     <script type="text/javascript" src="~/jquery-3.3.1.min.js"></script>
 
-
+   
 </head>
 <body>
 
@@ -19,7 +19,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li> <a asp-controller="Home" asp-action="Index" class="navbar-brand">Strona główna</a></li>
-                    <li> <a asp-controller="Opinion" asp-action="Index">Opinia</a></li>
+                    <li> <a asp-controller="Opinion" asp-action="Index">Kontakt</a></li>
                 </ul>
                 @if (_signInManager.IsSignedIn(User))
                 {
@@ -30,7 +30,6 @@
                         <li> <a asp-controller="Car" asp-action="AddNewCar">Dodaj ogłoszenie</a></li>
                     }
                 </ul>
-
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
                           method="post" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">

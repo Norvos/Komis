@@ -5,6 +5,9 @@
     <TargetFramework>netcoreapp2.1</TargetFramework>
 
     <IsPackable>false</IsPackable>
+
+    <StartupObject></StartupObject>
+
     
   </PropertyGroup>
 
@@ -24,6 +27,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 
     </PackageReference>
+    
   </ItemGroup>
   
   <ItemGroup>

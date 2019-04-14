@@ -4,14 +4,16 @@ using Komis.Infrastructure.EF;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Komis.Migrations
 {
     [DbContext(typeof(DBContext))]
-    partial class DBContextModelSnapshot : ModelSnapshot
+    [Migration("20190414063857_OpinionDate")]
+    partial class OpinionDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,8 +31,6 @@ namespace Komis.Migrations
 
                     b.Property<string>("Capacity")
                         .IsRequired();
-
-                    b.Property<DateTime>("CreatedAt");
 
                     b.Property<string>("Description")
                         .IsRequired();
@@ -50,8 +50,6 @@ namespace Komis.Migrations
                         .IsRequired();
 
                     b.Property<decimal>("Price");
-
-                    b.Property<DateTime>("UpdatedAt");
 
                     b.Property<int>("YearOfProduction");
 

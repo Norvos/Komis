@@ -21,7 +21,7 @@ namespace Komis
                 try
                 {
                     var context = services.GetRequiredService<DBContext>();
-                    //context.Database.Migrate();
+                    context.Database.Migrate();
                     DBInitializer.Seed(context);
 
                 }

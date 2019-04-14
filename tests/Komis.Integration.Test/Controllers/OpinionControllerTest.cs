@@ -1,8 +1,5 @@
 ﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -17,5 +14,6 @@ namespace Komis.Integration.Test.Controllers
 
             response.StatusCode.Should().Be(HttpStatusCode.Redirect);
         }
+
     }
 }

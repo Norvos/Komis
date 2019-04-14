@@ -12,20 +12,23 @@ namespace Komis.Integration.Test.Controllers
         protected readonly TestServer Server;
         protected readonly HttpClient Client;
 
+     
         protected ControllerTestsBase()
         {
             var projectDir = System.IO.Directory.GetCurrentDirectory();
 
-           Server = new TestServer(new WebHostBuilder()
-                .UseEnvironment("Development")
-                .UseContentRoot(projectDir)
-                .UseConfiguration(new ConfigurationBuilder()
-                .SetBasePath(projectDir)
-                .AddJsonFile("appsettings.json")
-                .Build())
-                .UseStartup<Startup>());
+            Server = new TestServer(new WebHostBuilder()
+                 .UseEnvironment("Development")
+                 .UseContentRoot(projectDir)
+                 .UseConfiguration(new ConfigurationBuilder()
+                 .SetBasePath(projectDir)
+                 .AddJsonFile("appsettings.json")
+                 .Build())
+                 .UseStartup<Startup>());
+      
 
             Client = Server.CreateClient();
+
         }
 
         protected static StringContent GetPayload(object data)
@@ -34,5 +37,9 @@ namespace Komis.Integration.Test.Controllers
 
             return new StringContent(json, Encoding.UTF8, "application/json");
         }
+
+
     }
+
+   
 }

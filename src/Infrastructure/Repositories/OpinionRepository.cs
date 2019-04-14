@@ -18,8 +18,9 @@ namespace Komis.Infrastructure.Repositories
       
         public async Task AddAsync(Opinion opinion)
         {
-             await _context.Opinions.AddAsync(opinion);
-             await _context.SaveChangesAsync();
+            opinion.CreatedAt = DateTime.UtcNow;
+            await _context.Opinions.AddAsync(opinion);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(Guid id)
@@ -31,5 +32,12 @@ namespace Komis.Infrastructure.Repositories
 
         public async Task<Opinion> GetAsync(Guid id)
           => await _context.Opinions.SingleOrDefaultAsync(x => x.ID == id);
+
+        public async Task Update(Opinion opinion)
+        {
+             opinion.UpdatedAt = DateTime.UtcNow;
+            _context.Opinions.Update(opinion);
+            await _context.SaveChangesAsync();
+        }
     }
 }

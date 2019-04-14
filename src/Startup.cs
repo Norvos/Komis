@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using Komis.Infrastructure.EF;
 using Komis.Infrastructure.IoC;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
@@ -73,7 +74,6 @@ namespace Komis
             services.AddMvc();
            
            
-
             var containerBuilder = new ContainerBuilder();
             containerBuilder.RegisterModule<RepositoryModule>();
             containerBuilder.RegisterModule<ServiceModule>();
@@ -90,7 +90,7 @@ namespace Komis
             app.UseStatusCodePages();
             app.UseStaticFiles();
             app.UseAuthentication();
-          
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute
@@ -101,5 +101,6 @@ namespace Komis
             });
 
         }
+
     }
 }

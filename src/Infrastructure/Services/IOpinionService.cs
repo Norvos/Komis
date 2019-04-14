@@ -1,7 +1,5 @@
 ﻿using Komis.Core.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Komis.Infrastructure.Services
@@ -12,5 +10,6 @@ namespace Komis.Infrastructure.Services
         Task AddAsync(Guid id, string email, string username, string message, bool waitingForAnAnswer);
         Task AddAsync(Opinion opinion);
         Task DeleteAsync(Guid id);
+        Task Update(Opinion opinion);
     }
 }

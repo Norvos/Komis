@@ -1,8 +1,6 @@
 ﻿using Komis.Core.Models;
 using Komis.Core.Repositories;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Komis.Infrastructure.Services
@@ -40,5 +38,9 @@ namespace Komis.Infrastructure.Services
             var opinion = await _opinionRepository.GetAsync(opinionId);
             return opinion;
         }
-    }
+
+
+        public async Task Update(Opinion opinion)
+         => await _opinionRepository.Update(opinion);
+    } 
 }

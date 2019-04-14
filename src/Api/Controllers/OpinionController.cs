@@ -1,12 +1,11 @@
 ﻿using Komis.Api.Controllers;
 using Komis.Core.Models;
 using Komis.Infrastructure.Commands;
+using Komis.Infrastructure.Commands.Opinion;
 using Komis.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
-using System.Net;
-using System.Net.Mail;
+using System;
 using System.Threading.Tasks;
 
 namespace Komis.Controllers
@@ -15,11 +14,13 @@ namespace Komis.Controllers
     public class OpinionController : ApiControllerBase
     {
         private readonly IUserService _userService;
-       
-        public OpinionController(IUserService userService, ICommandDispatcher commandDispatcher,IEmailSender emailSender, ICarService carService)
+        private readonly IOpinionService _opinionService;
+
+        public OpinionController(IUserService userService, ICommandDispatcher commandDispatcher,IEmailSender emailSender, ICarService carService, IOpinionService opinionService)
            : base(commandDispatcher, emailSender, carService)
         {
             _userService = userService;
+            _opinionService = opinionService;
         }
 
         //[HttpGet]
@@ -30,7 +31,7 @@ namespace Komis.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Index(Opinion command)
+        public async Task<IActionResult> Index(AddOpinion command)
         {
             if (!ModelState.IsValid)
             {
@@ -43,7 +44,7 @@ namespace Komis.Controllers
 
         public async Task<IActionResult> SendSuccessful()
         {
-            _emailSender.SendEmail(await GetEmailAddress(), $"{User.Identity.Name} dziękujemy za opinię",Messages.Opinion);
+            await _emailSender.SendEmail(await GetEmailAddress(), $"{User.Identity.Name} dziękujemy za opinię",Messages.Opinion);
             return View();
         }
 
@@ -58,6 +59,43 @@ namespace Komis.Controllers
                 return user.Email;
             }
             return string.Empty;
+        }
+
+        public async Task<IActionResult> Answear(Guid id)
+        {
+            var opinion = await _opinionService.GetAsync(id);
+
+            if (opinion == null) return NotFound();
+
+            var answear = new FeedbackViewModel()
+            {
+                Email = opinion.Email,
+                Username = opinion.Username,
+                Message=opinion.Message,
+                OpinionID = opinion.ID
+            };
+          
+            return View(answear);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Answear(FeedbackViewModel answear)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(answear);
+            }
+
+            var opinion = await _opinionService.GetAsync(answear.OpinionID);
+            if (opinion.WaitingForAnAnswer)
+            {
+                opinion.WaitingForAnAnswer = false;
+                await _opinionService.Update(opinion);
+            }
+          
+            await _emailSender.SendEmail(answear.Email, "Serwis Komis przesyła odpowiedź", answear.Feedback);
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

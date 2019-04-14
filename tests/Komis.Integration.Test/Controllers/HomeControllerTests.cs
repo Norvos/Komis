@@ -38,6 +38,8 @@ namespace Komis.Integration.Test.Controllers
 
               Assert.Contains(players, p => p.Brand== "Citroen");
               Assert.Contains(players, p => p.Brand== "Fiat");
+
+           
         }
 
     }

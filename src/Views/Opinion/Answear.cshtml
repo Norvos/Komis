@@ -1,0 +1,51 @@
+﻿@model FeedbackViewModel;
+
+
+<h2> Tutaj możesz odpowiedzieć na przesłaną opinię </h2>
+<hr />
+
+<form asp-action="Answear" method="post" class="form-horizontal" role="form">
+
+
+    <div class="form-group hidden">
+        <div class="col-md-5">
+            <input asp-for="OpinionID" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Username" class="col-md-2 control-label">Nazwa użytkownika</label>
+        <div class="col-md-5">
+            <input asp-for="Username" readonly class="form-control" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Email" class="col-md-2 control-label">Email</label>
+        <div class="col-md-5">
+            <input asp-for="Email" readonly class="form-control" />
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="Message" class="col-md-2 control-label">Wiadomość</label>
+        <div class="col-md-5">
+            <textarea asp-for="Message" readonly class="form-control"></textarea>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for=Feedback class="col-md-2 control-label">Odpowiedź</label>
+        <div class="col-md-5">
+            <textarea asp-for=Feedback class="form-control"></textarea>
+            <span asp-validation-for=Feedback class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-5">
+            <input type="submit" id="submit_btn_answear" class="btn btn-primary" value="Wyślij odpowiedź" />
+        </div>
+    </div>
+</form>

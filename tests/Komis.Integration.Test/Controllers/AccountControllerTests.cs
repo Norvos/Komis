@@ -22,7 +22,7 @@ namespace Komis.Integration.Test.Controllers
             };
 
             var payload = GetPayload(command);
-            var response = await Client.PostAsync("http://localhost/Account/RegisterFromBody",payload);
+            var response = await Client.PostAsync("http://localhost/Car/AddNewCarFromJSON", payload);
 
 
             response.StatusCode.Should().Be(HttpStatusCode.Redirect);

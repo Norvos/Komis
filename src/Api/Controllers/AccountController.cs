@@ -6,7 +6,6 @@ using Komis.Infrastructure.Commands.User;
 using Komis.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace Komis.Api.Controllers
 {
@@ -23,6 +22,11 @@ namespace Komis.Api.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public async Task<IActionResult> LoginFromJSON([FromBody]Login login)
+            => await Login(login);
+        
 
         [HttpPost]
         public async Task<IActionResult> Login(Login login)
@@ -70,8 +74,15 @@ namespace Komis.Api.Controllers
                 return View(createUser);
             }
 
-            _emailSender.SendEmail(createUser.Email, $"{createUser.Username} dziękujemy za rejestrację", Messages.Register);
-            return RedirectToAction("Index", "Home"); 
+            await _emailSender.SendEmail(createUser.Email, $"{createUser.Username} dziękujemy za rejestrację", Messages.Register);
+
+            var login = new Login()
+            {
+                Password = createUser.Password,
+                Username = createUser.Username
+            };
+
+            return await Login(login);
         }
 
         [HttpPost]

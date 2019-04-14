@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace Komis.Core.Models
@@ -37,6 +36,10 @@ namespace Komis.Core.Models
         public decimal Price { get; set; }
 
         public string PictureURL { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+
+        public DateTime UpdatedAt { get; set; }
 
         public Car(Guid id, string brand, string model, int yearofproduction, string milage, string capacity, string fueltype, string power, string description, decimal price, string pictureurl)
         {
