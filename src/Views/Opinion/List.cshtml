@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Opinion>
+<h2>
+    Tutaj możesz odpowiedzieć na pytania i problemy użytkowników
+</h2>
+
+<hr />
+
+<table class="table h4 table-striped">
+    <tr>
+        <td>Lp</td>
+        <td>Temat</td>
+        <td>Nazwa użytkownika</td>
+        <td>Adres e-mail</td>
+        <td>Data dodania</td>
+    </tr>
+
+    @foreach (var items in Model.Select((opinion, i) => new { i, opinion }))
+    {
+        var opinion = items.opinion;
+        var index = items.i+1;
+<tr>
+    <td>@index</td>
+    <td>@opinion.Topic</td>
+    <td>@opinion.Username</td>
+    <td>@opinion.Email</td>
+    <td>@opinion.CreatedAt.ToShortDateString()</td>
+    <td><a asp-controller="Opinion" asp-action="Answear" asp-route-id="@opinion.ID">Opowiedz</a></td>
+    <td><a asp-controller="Opinion" asp-action="Delete" asp-route-id="@opinion.ID">Usuń</a></td>
+</tr>
+
+    }
+
+
+</table>
+
+

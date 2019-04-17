@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Komis.Core.Models;
 using Komis.Core.Repositories;
@@ -30,8 +32,24 @@ namespace Komis.Infrastructure.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<Opinion>> GetAllRequiredAsync()
+        {
+            var opinions = await _context.Opinions
+            .Where(e => e.WaitingForAnAnswer == true)
+            .ToListAsync();
+            
+            return opinions;
+            
+        }
+
         public async Task<Opinion> GetAsync(Guid id)
           => await _context.Opinions.SingleOrDefaultAsync(x => x.ID == id);
+
+        public async Task<int> GetNumberOfRequiredAsync()
+        {
+            var opinions = await GetAllRequiredAsync();
+            return opinions.Count();
+        }
 
         public async Task Update(Opinion opinion)
         {

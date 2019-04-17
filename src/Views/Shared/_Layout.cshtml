@@ -1,6 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Identity;
-    <!DOCTYPE html>
+@using Komis.Infrastructure.Services;
+<!DOCTYPE html>
+
 @inject SignInManager<IdentityUser> _signInManager;
+@inject IOpinionService _opinionService;
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -10,7 +14,7 @@
     <link href="~/content/Site.css" rel="stylesheet" />
     <script type="text/javascript" src="~/jquery-3.3.1.min.js"></script>
 
-   
+
 </head>
 <body>
 
@@ -24,12 +28,13 @@
                 @if (_signInManager.IsSignedIn(User))
                 {
 
-                <ul class="nav navbar-nav">
-                    @if (User.IsInRole("Admin"))
-                    {
-                        <li> <a asp-controller="Car" asp-action="AddNewCar">Dodaj ogłoszenie</a></li>
-                    }
-                </ul>
+                    <ul class="nav navbar-nav">
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li> <a asp-controller="Car" asp-action="AddNewCar">Dodaj ogłoszenie</a></li>
+                            <li> <a asp-controller="Opinion" asp-action="List">Odpowiedz<b> (@await _opinionService.GetNumberOfRequiredAsync()) </b></a></li>
+                        }
+                    </ul>
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"
                           method="post" class="navbar-right">
                         <ul class="nav navbar-nav navbar-right">

@@ -11,6 +11,8 @@ namespace Komis.Core.Models
 
         public string Message { get; set; }
 
+        public string Topic { get; set; }
+
         public Guid OpinionID { get; set; }
 
         [Required(ErrorMessage = "Odpowiedź nie może być pusta")]

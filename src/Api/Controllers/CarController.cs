@@ -29,6 +29,7 @@ namespace Komis.Api.Controllers
             return View();
         }
 
+
         [HttpPost]
         public async Task<IActionResult> AddNewCarFromJSON([FromBody]AddVehicle command)
             => await AddNewCar(command);
@@ -63,6 +64,7 @@ namespace Komis.Api.Controllers
             if (car == null)
                 return NotFound();
 
+         
             return View(car);
         }
 
@@ -80,16 +82,39 @@ namespace Komis.Api.Controllers
         public async Task<IActionResult> Delete(Guid id)
         {
             await _carService.DeleteAsync(id); 
-            //I like my cars and I don't want to delete them :(
-
+           
             return RedirectToAction("Index", "Home");
         }
+
 
         public async Task<IActionResult> EditGallery(Guid id)
         {
             var car = await _carService.GetAsync(id);
-            
-            return View(car.Images);
+
+            var viewmodel = new EditVehicleGallery()
+            {
+                Car = car,
+                Images = null
+            };
+
+            return View(viewmodel);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddPhotos(EditVehicleGallery command)
+        {
+            try
+            {
+                await DispatchAsync(command);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("addPhotosError", e.Message);
+
+                return RedirectToAction("EditGallery", new { id = command.Car.ID });
+            }
+
+            return RedirectToAction("EditGallery", new { id = command.Car.ID });
         }
 
         public async Task<IActionResult> DeletePhoto(Guid id)
@@ -98,10 +123,14 @@ namespace Komis.Api.Controllers
 
             await _imageService.RemoveAsync(id);
 
-            //return RedirectToAction("EditGallery", img.CarID);
-
             return RedirectToAction("EditGallery", new { id = img.CarID });
         }
+
+
+
+
+
+
         public IActionResult EditedSuccessful()
         {
             return View();

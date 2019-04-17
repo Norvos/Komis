@@ -9,6 +9,8 @@ namespace Komis.Core.Models
 
         public string Username { get; set; }
 
+        public string Topic { get; set; }
+
         public string Email { get; set; }
 
         public string Message { get; set; }
@@ -19,13 +21,14 @@ namespace Komis.Core.Models
 
         public bool WaitingForAnAnswer { get; set; }
 
-        public Opinion(string email, string username, string message, bool waitingforananswer)
+        public Opinion(string email, string username, string message, bool waitingforananswer,string topic)
         {
             ID = Guid.NewGuid();
             Username = username;
             Email = email;
             Message = message;
             WaitingForAnAnswer = waitingforananswer;
+            Topic = topic;
         }
 
         public static explicit operator Opinion(AddOpinion v)
@@ -37,6 +40,7 @@ namespace Komis.Core.Models
                 Message=v.Message,
                 Username=v.Username,
                 WaitingForAnAnswer=v.WaitingForAnAnswer,
+                Topic = v.Topic,
              };
 
             return opinion;

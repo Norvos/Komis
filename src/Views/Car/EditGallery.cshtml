@@ -1,16 +1,35 @@
-﻿@model IEnumerable<Image>
+﻿@model EditVehicleGallery
 
-    <h2 class="col-sm-11">
-        Tutaj możesz usunąć i dodać zdjęcia wybranego samochodu
-        <a asp-controller="Car" asp-action="AddPhotos"> <input type="button" class="btn btn-default pull-right" value="Dodaj nowe zdjęcia" /> </a>
-    </h2>
+<h2 >
+    Tutaj możesz usunąć i dodać zdjęcia wybranego samochodu
+</h2>
 
 <hr />
-<br />
-<br />
-<br />
 
-@foreach (var image in Model)
+<form asp-action="AddPhotos" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <div class="col-md-5">
+            <input type="file" asp-for="Images" multiple accept="image/*" files />
+            <span asp-validation-for="Images"class="text-danger"></span>
+        </div>
+    </div>
+
+    <input asp-for="Car.ID" hidden />
+
+    <div class="form-group">
+        <div class="col-md-5">
+            <input type="submit" class="btn btn-default" value="Dodaj nowe zdjęcia" />
+        </div>
+    </div>
+</form>
+
+<div class="text-danger ">
+    @Html.ValidationMessage("addPhotosError")
+</div>
+
+
+@foreach (var image in Model.Car.Images)
 {
     <div class="col-sm-4 col-lg-4 col-md-4">
 
@@ -18,10 +37,9 @@
 
             <img src=../@image.URL style="width:350px;height:250px">
 
-
             <div class="caption center-block">
 
-                <a asp-controller="Car" asp-action="DeletePhoto" asp-route-id=@image.ID> <input type="button" class="btn btn-default center-block btn-warning" value="Usuń"/> </a>
+                <a asp-controller="Car" asp-action="DeletePhoto" asp-route-id=@image.ID> <input type="button" class="btn btn-default center-block btn-warning" value="Usuń" /> </a>
 
             </div>
 

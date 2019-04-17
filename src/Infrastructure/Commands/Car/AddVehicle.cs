@@ -11,7 +11,7 @@ namespace Komis.Infrastructure.Commands.Car
         public Core.Models.Car Car { get ;set;}
 
         [Required(ErrorMessage = "Wybierz minimum jedno zdjęcie")]
-        [MaxLength(5,ErrorMessage ="Możesz wybrać maksymalnie 5 zdjęć")]
+        [MaxLength(6,ErrorMessage ="Możesz wybrać maksymalnie 6 zdjęć")]
         public IFormFile[] Images { set; get; }
     }
 }

@@ -3,7 +3,7 @@
 <h2> Tutaj możesz wysłać opinię dotyczącą tego serwisu</h2>
 <hr />
 <form asp-action="Index" method="post" class="form-horizontal" role="form">
-   
+
     <div class="form-group">
         <label asp-for="Username" class="col-md-2 control-label">Nazwa użytkownika</label>
         <div class="col-md-5">
@@ -21,6 +21,14 @@
     </div>
 
     <div class="form-group">
+        <label asp-for="Topic" class="col-md-2 control-label">Temat</label>
+        <div class="col-md-5">
+            <input asp-for="Topic" class="form-control"/>
+            <span asp-validation-for="Topic" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group">
         <label asp-for="Message" class="col-md-2 control-label">Wiadomość</label>
         <div class="col-md-5">
             <textarea asp-for="Message" class="form-control"></textarea>
@@ -29,15 +37,10 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="WaitingForAnAnswer" class="col-md-2 control-label">Oczekuję odpowiedźi</label>
-        <div class="col-md-1">
-            <input type="checkbox" asp-for="WaitingForAnAnswer" class="form-control" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-5">
-            <input type="submit" id="submit_btn"class="btn btn-primary" value="Wyślij opinię" />
+        <label asp-for="WaitingForAnAnswer" class="col-md-2 control-label">Oczekuję odpowiedzi</label>
+        <div class="col-md-5">
+            <input type="checkbox" asp-for="WaitingForAnAnswer" class="form-control" style="width:23px" />
+            <input type="submit" id="submit_btn" class="btn btn-primary pull-right" value="Wyślij opinię" />
         </div>
     </div>
 </form>

@@ -21,15 +21,19 @@ namespace Komis.Infrastructure.Commands.Opinion
         [StringLength(5000, ErrorMessage = "Wiadomość jest za długa")]
         public string Message { get; set; }
 
+        [Required(ErrorMessage = "Temat jest wymagany")]
+        [StringLength(200, ErrorMessage = "Temat jest za długi")]
+        public string Topic { get; set; }
 
         public bool WaitingForAnAnswer { get; set; }
 
-        public AddOpinion(string email, string username, string message, bool waitingforananswer)
+        public AddOpinion(string email, string username, string message, bool waitingforananswer,string topic)
         {
             Username = username;
             Email = email;
             Message = message;
             WaitingForAnAnswer = waitingforananswer;
+            Topic = topic;
         }
 
         public AddOpinion()

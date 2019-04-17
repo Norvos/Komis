@@ -1,15 +1,12 @@
 ﻿using Autofac;
 using Komis.Infrastructure.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Threading.Tasks;
 
 namespace Komis.Infrastructure.IoC
 {
-   
-     public class ServiceModule : Autofac.Module
+
+    public class ServiceModule : Autofac.Module
         {
             protected override void Load(ContainerBuilder builder)
             {

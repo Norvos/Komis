@@ -72,7 +72,8 @@ namespace Komis.Controllers
                 Email = opinion.Email,
                 Username = opinion.Username,
                 Message=opinion.Message,
-                OpinionID = opinion.ID
+                OpinionID = opinion.ID,
+                Topic=opinion.Topic
             };
           
             return View(answear);
@@ -87,6 +88,7 @@ namespace Komis.Controllers
             }
 
             var opinion = await _opinionService.GetAsync(answear.OpinionID);
+
             if (opinion.WaitingForAnAnswer)
             {
                 opinion.WaitingForAnAnswer = false;
@@ -96,6 +98,21 @@ namespace Komis.Controllers
             await _emailSender.SendEmail(answear.Email, "Serwis Komis przesyła odpowiedź", answear.Feedback);
 
             return RedirectToAction("Index", "Home");
+        }
+       
+        public async Task<IActionResult> List()
+        {
+            var opinions = await _opinionService.GetAllRequiredAsync();
+
+            return View(opinions);
+        }
+
+        public async Task<IActionResult> Delete(Guid id)
+        {
+           
+            await _opinionService.DeleteAsync(id);
+
+            return RedirectToAction("List", "Opinion");
         }
     }
 }
