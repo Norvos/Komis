@@ -62,7 +62,6 @@ namespace Komis.Controllers
         }
 
 
-
         public async Task<IActionResult> Details(Guid id)
         {
             var samochod = await _carService.GetAsync(id);

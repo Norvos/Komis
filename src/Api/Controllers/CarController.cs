@@ -14,10 +14,14 @@ namespace Komis.Api.Controllers
     [Authorize(Roles = "Admin")]
     public class CarController : ApiControllerBase
     {
+        private readonly IImageService _imageService;
 
         // GET: /<controller>/
-        public CarController(ICommandDispatcher commandDispatcher, IEmailSender emailSender, ICarService carService)
-        : base(commandDispatcher, emailSender, carService) { }
+        public CarController(ICommandDispatcher commandDispatcher, IEmailSender emailSender, ICarService carService, IImageService imageService)
+        : base(commandDispatcher, emailSender, carService)
+        {
+            _imageService = imageService;
+        }
      
 
         public IActionResult AddNewCar()
@@ -38,8 +42,17 @@ namespace Komis.Api.Controllers
                 return View(command);
             }
 
-            await  DispatchAsync(command);
+            try
+            {
+                await DispatchAsync(command);
+            }
+            catch (Exception e)
+            {
+                ModelState.AddModelError("addError", e.Message);
+                return View(command);
+            }
 
+         
             return RedirectToAction("AddedSuccessful");
         }
 
@@ -72,7 +85,23 @@ namespace Komis.Api.Controllers
             return RedirectToAction("Index", "Home");
         }
 
+        public async Task<IActionResult> EditGallery(Guid id)
+        {
+            var car = await _carService.GetAsync(id);
+            
+            return View(car.Images);
+        }
 
+        public async Task<IActionResult> DeletePhoto(Guid id)
+        {
+            var img = await _imageService.GetAsync(id);
+
+            await _imageService.RemoveAsync(id);
+
+            //return RedirectToAction("EditGallery", img.CarID);
+
+            return RedirectToAction("EditGallery", new { id = img.CarID });
+        }
         public IActionResult EditedSuccessful()
         {
             return View();

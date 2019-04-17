@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Komis.Migrations
 {
     [DbContext(typeof(DBContext))]
-    [Migration("20190406144536_sadassadsad")]
-    partial class sadassadsad
+    [Migration("20190415174307_ImageNamePropAdd")]
+    partial class ImageNamePropAdd
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,29 +26,32 @@ namespace Komis.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Brand");
+                    b.Property<string>("Brand")
+                        .IsRequired();
 
-                    b.Property<string>("Capacity");
+                    b.Property<string>("Capacity")
+                        .IsRequired();
 
-                    b.Property<string>("Description");
+                    b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("FuelType");
+                    b.Property<string>("Description")
+                        .IsRequired();
 
-                    b.Property<bool>("IsCarOfTheWeek");
+                    b.Property<string>("FuelType")
+                        .IsRequired();
 
-                    b.Property<bool>("IsInACentral");
+                    b.Property<string>("Milage")
+                        .IsRequired();
 
-                    b.Property<string>("Milage");
+                    b.Property<string>("Model")
+                        .IsRequired();
 
-                    b.Property<string>("Model");
-
-                    b.Property<string>("PictureURL");
-
-                    b.Property<string>("Power");
+                    b.Property<string>("Power")
+                        .IsRequired();
 
                     b.Property<decimal>("Price");
 
-                    b.Property<string>("ThumbnailURL");
+                    b.Property<DateTime>("UpdatedAt");
 
                     b.Property<int>("YearOfProduction");
 
@@ -57,21 +60,38 @@ namespace Komis.Migrations
                     b.ToTable("Cars");
                 });
 
+            modelBuilder.Entity("Komis.Core.Models.Image", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CarID");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("URL");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CarID");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("Komis.Core.Models.Opinion", b =>
                 {
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasMaxLength(100);
+                    b.Property<DateTime>("CreatedAt");
 
-                    b.Property<string>("Message")
-                        .IsRequired()
-                        .HasMaxLength(5000);
+                    b.Property<string>("Email");
 
-                    b.Property<string>("Username")
-                        .IsRequired();
+                    b.Property<string>("Message");
+
+                    b.Property<DateTime>("UpdatedAt");
+
+                    b.Property<string>("Username");
 
                     b.Property<bool>("WaitingForAnAnswer");
 
@@ -239,6 +259,14 @@ namespace Komis.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Komis.Core.Models.Image", b =>
+                {
+                    b.HasOne("Komis.Core.Models.Car")
+                        .WithMany("Images")
+                        .HasForeignKey("CarID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

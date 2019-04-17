@@ -40,7 +40,7 @@ namespace Komis.Integration.Test.Controllers
             var command = new AddVehicle()
             {
                 Car = car,
-                Image = image
+                Images = null
             };
 
 

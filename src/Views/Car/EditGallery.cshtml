@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Image>
+
+    <h2 class="col-sm-11">
+        Tutaj możesz usunąć i dodać zdjęcia wybranego samochodu
+        <a asp-controller="Car" asp-action="AddPhotos"> <input type="button" class="btn btn-default pull-right" value="Dodaj nowe zdjęcia" /> </a>
+    </h2>
+
+<hr />
+<br />
+<br />
+<br />
+
+@foreach (var image in Model)
+{
+    <div class="col-sm-4 col-lg-4 col-md-4">
+
+        <div class="thumbnail img-responsive">
+
+            <img src=../@image.URL style="width:350px;height:250px">
+
+
+            <div class="caption center-block">
+
+                <a asp-controller="Car" asp-action="DeletePhoto" asp-route-id=@image.ID> <input type="button" class="btn btn-default center-block btn-warning" value="Usuń"/> </a>
+
+            </div>
+
+        </div>
+
+    </div>
+}
+
+

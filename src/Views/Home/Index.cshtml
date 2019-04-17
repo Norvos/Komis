@@ -6,7 +6,16 @@
 {
     <div class="col-sm-4 col-lg-4 col-md-4">
         <div class="thumbnail img-responsive">
-            <a asp-controller="Home" asp-action="Details" asp-route-id="@car.ID"><img src="@car.PictureURL" style="width:350px;height:250px"></a>
+            <a asp-controller="Home" asp-action="Details" asp-route-id="@car.ID">
+                @if (@car.Images.Count() > 0)
+                {
+                    <img src=@car.Images.First().URL style="width:350px;height:250px" onerror="this.src='../images/404pictureNotFound.jpg'">
+                }
+                else
+                {
+                    <img src=~/images/404pictureNotFound.jpg style="width:350px;height:250px">
+                }
+            </a>
             <div class="caption center-block text-justify text-primary">
 
                 <h3 class="text-center">

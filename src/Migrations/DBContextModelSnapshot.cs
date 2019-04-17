@@ -44,8 +44,6 @@ namespace Komis.Migrations
                     b.Property<string>("Model")
                         .IsRequired();
 
-                    b.Property<string>("PictureURL");
-
                     b.Property<string>("Power")
                         .IsRequired();
 
@@ -58,6 +56,24 @@ namespace Komis.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Cars");
+                });
+
+            modelBuilder.Entity("Komis.Core.Models.Image", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<Guid>("CarID");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("URL");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("CarID");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Komis.Core.Models.Opinion", b =>
@@ -241,6 +257,14 @@ namespace Komis.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("Komis.Core.Models.Image", b =>
+                {
+                    b.HasOne("Komis.Core.Models.Car")
+                        .WithMany("Images")
+                        .HasForeignKey("CarID")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
