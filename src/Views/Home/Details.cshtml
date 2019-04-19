@@ -12,8 +12,8 @@
             <!-- Full-width images with number and caption text -->
             @foreach (var image in Model.Images)
             {
-                <div class="mySlides">
-                    <img src=../@image.URL style="height:500px;" class="center-block">
+                <div class="mySlides img-responsive">
+                    <img src=../@image.URL style="height:500px" class="center-block">
                 </div>
             }
             <!-- Next and previous buttons -->
@@ -74,7 +74,7 @@
         <br />
         <div class="col-md-8">
             <a asp-controller="Car" asp-action="Edit" asp-route-id="@Model.ID"> <input type="button" value="Edytuj ogłoszenie" class="btn btn-primary" /> </a>
-            <a> <input type="button" id="delete-button" value="Usuń ogłoszenie" class="btn btn-primary pull-right" /> </a>
+            <a> <input type="button" id="delete-button" value="Usuń ogłoszenie" class="btn btn-danger pull-right" /> </a>
         </div>
     </div>
 }

@@ -6,16 +6,19 @@ using Komis.Core.Models;
 using Komis.Core.Repositories;
 using Komis.Infrastructure.EF;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace Komis.Infrastructure.Repositories
 {
     public class OpinionRepository : IOpinionRepository
     {
         private readonly DBContext _context;
+        private readonly IMemoryCache _cache;
 
-        public OpinionRepository(DBContext context)
+        public OpinionRepository(DBContext context, IMemoryCache cache)
         {
             _context = context;
+            _cache = cache;
         }
       
         public async Task AddAsync(Opinion opinion)
@@ -23,6 +26,8 @@ namespace Komis.Infrastructure.Repositories
             opinion.CreatedAt = DateTime.UtcNow;
             await _context.Opinions.AddAsync(opinion);
             await _context.SaveChangesAsync();
+
+            _cache.Remove("numberOfOpinions");
         }
 
         public async Task DeleteAsync(Guid id)
@@ -30,12 +35,15 @@ namespace Komis.Infrastructure.Repositories
             var opinion = await GetAsync(id);
             _context.Opinions.Remove(opinion);
             await _context.SaveChangesAsync();
+
+            _cache.Remove("numberOfOpinions");
         }
 
         public async Task<IEnumerable<Opinion>> GetAllRequiredAsync()
         {
             var opinions = await _context.Opinions
             .Where(e => e.WaitingForAnAnswer == true)
+            .OrderBy(x => x.CreatedAt)
             .ToListAsync();
             
             return opinions;
@@ -47,8 +55,16 @@ namespace Komis.Infrastructure.Repositories
 
         public async Task<int> GetNumberOfRequiredAsync()
         {
-            var opinions = await GetAllRequiredAsync();
-            return opinions.Count();
+            int? number = _cache.Get<int?>("numberOfOpinions");
+
+            if (number == null)
+            {
+                var opinions = await GetAllRequiredAsync();
+                _cache.Set("numberOfOpinions", opinions.Count() , TimeSpan.FromHours(2));
+                return opinions.Count();
+            }
+
+            return (int)number;
         }
 
         public async Task Update(Opinion opinion)
@@ -56,6 +72,8 @@ namespace Komis.Infrastructure.Repositories
              opinion.UpdatedAt = DateTime.UtcNow;
             _context.Opinions.Update(opinion);
             await _context.SaveChangesAsync();
+
+            _cache.Remove("numberOfOpinions");
         }
     }
 }

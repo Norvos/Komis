@@ -44,7 +44,7 @@ namespace Komis.Controllers
 
         public async Task<IActionResult> SendSuccessful()
         {
-            await _emailSender.SendEmail(await GetEmailAddress(), $"{User.Identity.Name} dziękujemy za opinię",Messages.Opinion);
+            await _emailSender.SendEmail(await GetEmailAddress(), $"{User.Identity.Name} dziękujemy za wiadomość",Messages.Opinion);
             return View();
         }
 
@@ -61,6 +61,7 @@ namespace Komis.Controllers
             return string.Empty;
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Answear(Guid id)
         {
             var opinion = await _opinionService.GetAsync(id);
@@ -79,6 +80,7 @@ namespace Komis.Controllers
             return View(answear);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Answear(FeedbackViewModel answear)
         {
@@ -100,13 +102,18 @@ namespace Komis.Controllers
             return RedirectToAction("Index", "Home");
         }
        
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> List()
         {
             var opinions = await _opinionService.GetAllRequiredAsync();
 
+            
+                
+
             return View(opinions);
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(Guid id)
         {
            

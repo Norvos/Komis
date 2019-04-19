@@ -75,6 +75,7 @@ namespace Komis.Infrastructure.Repositories
             {
                 var images = _context.Images
                      .Where(e => e.CarID == car.ID)
+                      .OrderBy(x => x.CreatedAt)
                      .ToList();
 
                 if (images != null)

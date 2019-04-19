@@ -1,9 +1,11 @@
-﻿using Komis.Core.Models;
+﻿using Komis.Api.Filters;
+using Komis.Core.Models;
 using Komis.Infrastructure.Commands;
 using Komis.Infrastructure.Commands.Car;
 using Komis.Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using System;
 using System.Threading.Tasks;
 
@@ -86,7 +88,7 @@ namespace Komis.Api.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-
+        [RestoreModelStateFromTempData]
         public async Task<IActionResult> EditGallery(Guid id)
         {
             var car = await _carService.GetAsync(id);
@@ -101,7 +103,8 @@ namespace Komis.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AddPhotos(EditVehicleGallery command)
+        [SetTempDataModelState]
+        public async Task<IActionResult> EditGallery(EditVehicleGallery command)
         {
             try
             {
@@ -110,8 +113,6 @@ namespace Komis.Api.Controllers
             catch (Exception e)
             {
                 ModelState.AddModelError("addPhotosError", e.Message);
-
-                return RedirectToAction("EditGallery", new { id = command.Car.ID });
             }
 
             return RedirectToAction("EditGallery", new { id = command.Car.ID });
@@ -128,9 +129,6 @@ namespace Komis.Api.Controllers
 
 
 
-
-
-
         public IActionResult EditedSuccessful()
         {
             return View();
@@ -140,5 +138,7 @@ namespace Komis.Api.Controllers
         {
             return View();
         }
+
+
     }
 }

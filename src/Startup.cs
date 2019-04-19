@@ -53,7 +53,7 @@ namespace Komis
                 options.Lockout.AllowedForNewUsers = true;
 
                 // User settings
-                options.User.RequireUniqueEmail = true;
+                options.User.RequireUniqueEmail = false;
 
             });
 

@@ -18,6 +18,7 @@ namespace Komis.Infrastructure.Repositories
         private readonly ICarService _carService;
 
         private readonly IHostingEnvironment _hostingEnvironment;
+
         private readonly IMemoryCache _cache;
 
         public ImageRepository(DBContext context, ICarService carService, IHostingEnvironment hostingEnvironment, IMemoryCache cache)
@@ -30,6 +31,7 @@ namespace Komis.Infrastructure.Repositories
 
         public async Task AddAsync(Image image)
         {
+            image.CreatedAt = DateTime.UtcNow;
             await _context.Images.AddAsync(image);
             await _context.SaveChangesAsync();
         }

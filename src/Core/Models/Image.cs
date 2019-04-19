@@ -13,7 +13,12 @@ namespace Komis.Core.Models
 
         public Guid CarID { get; set; }
 
-        public Image() { }
+        public DateTime CreatedAt { get; set; }
+
+        public Image()
+        {
+            CreatedAt = DateTime.UtcNow;
+        }
 
     }
 }

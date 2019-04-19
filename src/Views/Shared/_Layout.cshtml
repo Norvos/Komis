@@ -32,7 +32,7 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <li> <a asp-controller="Car" asp-action="AddNewCar">Dodaj ogłoszenie</a></li>
-                            <li> <a asp-controller="Opinion" asp-action="List">Odpowiedz<b> (@await _opinionService.GetNumberOfRequiredAsync()) </b></a></li>
+                            <li> <a asp-controller="Opinion" asp-action="List">Wiadomości<b> (@await _opinionService.GetNumberOfRequiredAsync()) </b></a></li>
                         }
                     </ul>
                     <form asp-area="" asp-controller="Account" asp-action="Logout" id="logoutForm"

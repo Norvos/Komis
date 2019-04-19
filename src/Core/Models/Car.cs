@@ -95,7 +95,6 @@ namespace Komis.Core.Models
                 throw new Exception("Image cannot be null");
             }
             _images.Add(img);
-            UpdatedAt = DateTime.UtcNow;
         }
 
         public void DeleteImage(Guid id)

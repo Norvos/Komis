@@ -6,7 +6,7 @@
 
 <hr />
 
-<form asp-action="AddPhotos" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+<form asp-action="EditGallery" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
 
     <div class="form-group">
         <div class="col-md-5">
@@ -39,7 +39,7 @@
 
             <div class="caption center-block">
 
-                <a asp-controller="Car" asp-action="DeletePhoto" asp-route-id=@image.ID> <input type="button" class="btn btn-default center-block btn-warning" value="Usuń" /> </a>
+                <a asp-controller="Car" asp-action="DeletePhoto" asp-route-id=@image.ID> <input type="button" class="btn center-block btn-danger" value="Usuń" /> </a>
 
             </div>
 

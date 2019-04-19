@@ -1,7 +1,8 @@
 ﻿body {
     padding-top: 30px;
     padding-bottom: 20px;
-    background-color:whitesmoke ;
+    background-color: whitesmoke;
+    font-family:'Segoe UI';
    
 }
 
@@ -15,4 +16,9 @@ h4 {
 }
 h3 {
     line-height:70%;
+}
+
+@font-face {
+    font-family: 'Montserrat-UltraLight';
+    src: url('Montserrat-UltraLight.woff2');
 }
