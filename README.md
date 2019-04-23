@@ -2,6 +2,8 @@
 ----------------
 Komis is a web application written in C#, HTML, CSS, JS and based on .NET Core 2.1 with Razor views.
 
+![1](https://user-images.githubusercontent.com/48060008/56583169-43202700-65d9-11e9-9657-7ba6d96e0ae0.PNG)
+
 **Features**
 ----------------
 - cars overview
@@ -11,6 +13,8 @@ Komis is a web application written in C#, HTML, CSS, JS and based on .NET Core 2
 - sending massages/opinions to administrator
 - watching advert details with interactive image gallery
 - sending html templeted email automatically after registration
+
+![3](https://user-images.githubusercontent.com/48060008/56583342-a3af6400-65d9-11e9-9e7e-2a6546eadac1.PNG)
 
 **Things I used in this project**
 ----------------
@@ -29,3 +33,4 @@ Komis is a web application written in C#, HTML, CSS, JS and based on .NET Core 2
 - MVC
 - Command dispatcher
 - Repository
+
