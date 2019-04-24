@@ -1,11 +1,15 @@
 ﻿@model AddOpinion;
 
+
+<script src="~/lib/captcha.js"></script>
+
+
 <h2> Tutaj możesz skontaktowac się z nami lub przekazać nam swoją opinię</h2>
 <hr />
 <form asp-action="Index" method="post" class="form-horizontal" role="form">
 
     <div class="form-group">
-        <label asp-for="Username"  class="col-md-2 control-label">Nazwa użytkownika</label>
+        <label asp-for="Username" class="col-md-2 control-label">Nazwa użytkownika</label>
         <div class="col-md-5">
             <input asp-for="Username" readonly class="form-control" value="@User.Identity.Name" />
             <span asp-validation-for="Username" class="text-danger"></span>
@@ -23,7 +27,7 @@
     <div class="form-group">
         <label asp-for="Topic" class="col-md-2 control-label">Temat</label>
         <div class="col-md-5">
-            <input asp-for="Topic" class="form-control"/>
+            <input asp-for="Topic" class="form-control" />
             <span asp-validation-for="Topic" class="text-danger"></span>
         </div>
     </div>
@@ -38,11 +42,19 @@
 
     <div class="form-group">
         <label asp-for="WaitingForAnAnswer" class="col-md-2 control-label">Oczekuję odpowiedzi</label>
-        <div class="col-md-5">
-            <input type="checkbox" asp-for="WaitingForAnAnswer" class="form-control" style="width:23px" />
-            <input type="submit" id="submit_btn" class="btn btn-primary pull-right" value="Wyślij opinię" />
+
+        <div class="col-md-1">
+            <input type="checkbox" asp-for="WaitingForAnAnswer"  class="form-control" />
         </div>
-    </div>
+
+        <div class="col-md-4" style="text-align:end">
+            <script type="text/javascript">DrawBotBoot()</script>
+            <input id="Button1" type="button" class="btn btn-primary" value="Wyślij" onclick="ValidBotBoot();" />
+        </div>
+
+        <input type="submit" id="submit_btn" class="hidden" hidden />
+
+        </div>
 </form>
 
 

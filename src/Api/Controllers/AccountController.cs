@@ -74,7 +74,7 @@ namespace Komis.Api.Controllers
                 return View(createUser);
             }
 
-            await _emailSender.SendEmail(createUser.Email, $"{createUser.Username} dziękujemy za rejestrację", Messages.Register);
+             _emailSender.SendEmail(createUser.Email, $"{createUser.Username} dziękujemy za rejestrację", Messages.Register);
 
             var login = new Login()
             {

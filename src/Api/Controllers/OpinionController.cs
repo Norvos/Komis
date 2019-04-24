@@ -44,7 +44,7 @@ namespace Komis.Controllers
 
         public async Task<IActionResult> SendSuccessful()
         {
-            await _emailSender.SendEmail(await GetEmailAddress(), $"{User.Identity.Name} dziękujemy za wiadomość",Messages.Opinion);
+             _emailSender.SendEmail(await GetEmailAddress(), $"{User.Identity.Name} dziękujemy za wiadomość",Messages.Opinion);
             return View();
         }
 
