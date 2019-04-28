@@ -11,13 +11,11 @@ namespace Komis.Infrastructure.Handlers.Car
     {
         private readonly ICarService _carService;
         private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly IImageService _imageService;
-
-        public AddPhotosHandler(ICarService carService, IHostingEnvironment hostingEnvironment, IImageService imageService)
+       
+        public AddPhotosHandler(ICarService carService, IHostingEnvironment hostingEnvironment)
         {
             _carService = carService;
             _hostingEnvironment = hostingEnvironment;
-            _imageService = imageService;
         }
 
         public async Task HandleAsync(EditVehicleGallery command)

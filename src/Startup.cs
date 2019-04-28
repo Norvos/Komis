@@ -2,6 +2,7 @@
 using Autofac.Extensions.DependencyInjection;
 using Komis.Infrastructure.EF;
 using Komis.Infrastructure.IoC;
+using Komis.Infrastructure.Mapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -75,6 +76,10 @@ namespace Komis
            
            
             var containerBuilder = new ContainerBuilder();
+
+            containerBuilder.RegisterInstance(AutoMapperConfig.Initialize())
+                .SingleInstance();
+
             containerBuilder.RegisterModule<RepositoryModule>();
             containerBuilder.RegisterModule<ServiceModule>();
             containerBuilder.RegisterModule<CommandModule>();

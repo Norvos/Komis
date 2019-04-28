@@ -11,13 +11,11 @@ namespace Komis.Infrastructure.Handlers.AddOpinion
     {
         private readonly ICarService _carService;
         private readonly IHostingEnvironment _hostingEnvironment;
-        private readonly IImageService _imageService;
-
-        public AddVehicleHandler(ICarService carService, IHostingEnvironment hostingEnvironment, IImageService imageService)
+        
+        public AddVehicleHandler(ICarService carService, IHostingEnvironment hostingEnvironment)
         {
             _carService = carService;
             _hostingEnvironment = hostingEnvironment;
-            _imageService = imageService;
         }
 
         public async Task HandleAsync(AddVehicle command)

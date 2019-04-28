@@ -9,7 +9,7 @@ namespace Komis.Infrastructure.Commands.Car
         [BindProperty]
         public Core.Models.Car Car { get; set; }
 
-        [MinLength(1,ErrorMessage ="Choose photos")]
+        [MinLength(1,ErrorMessage = "Wybierz zdjęcie")]
         public IFormFile[] Images { set; get; }
     }
 }

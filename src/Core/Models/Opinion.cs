@@ -31,21 +31,6 @@ namespace Komis.Core.Models
             Topic = topic;
         }
 
-        public static explicit operator Opinion(AddOpinion v)
-        {
-            Opinion opinion = new Opinion()
-            {
-                Email = v.Email,
-                ID = Guid.NewGuid(),
-                Message=v.Message,
-                Username=v.Username,
-                WaitingForAnAnswer=v.WaitingForAnAnswer,
-                Topic = v.Topic,
-             };
-
-            return opinion;
-        }
-
         public Opinion() { }
         
     }

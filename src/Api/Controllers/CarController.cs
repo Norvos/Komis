@@ -55,7 +55,6 @@ namespace Komis.Api.Controllers
                 return View(command);
             }
 
-         
             return RedirectToAction("AddedSuccessful");
         }
 
