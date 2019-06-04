@@ -2,6 +2,8 @@
 ----------------
 Komis is a web application written in C#, HTML, CSS, JS and based on .NET Core 2.1 with Razor views.
 
+Modeled on: https://www.udemy.com/aspnet-core-2-mvc/
+
 ![1](https://user-images.githubusercontent.com/48060008/56583169-43202700-65d9-11e9-9657-7ba6d96e0ae0.PNG)
 
 **Features**
